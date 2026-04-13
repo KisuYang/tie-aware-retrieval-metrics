@@ -49,4 +49,5 @@ Repository = "https://github.com/KisuYang/tie-aware-retrieval-metrics"
 dev = ["pytest>=7.0"]
 
 [tool.setuptools.packages.find]
+where = ["src"]
 include = ["trm*"]
