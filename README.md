@@ -2,7 +2,7 @@
 
 A lightweight Python library for reliable evaluation of retrieval systems in the presence of tied relevance scores.
 
-When retrieval models operate in low numerical precision (e.g., BF16, FP16), many candidate documents receive identical scores, creating *spurious ties*. Conventional tie-oblivious evaluation arbitrarily breaks these ties, leading to unstable and potentially misleading metric values. *TRM* resolves this by computing *expected score* over all possible orderings of tied candidates, along with score *range* and *bias* diagnostics.
+When retrieval models operate in low numerical precision (e.g., BF16, FP16), many candidate documents receive identical scores, creating *spurious ties*. Conventional tie-oblivious evaluation arbitrarily breaks these ties, leading to unstable and potentially misleading metric values. *TRM* resolves this by computing *expected score* over all possible orderings of tied candidates, along with score *range* and *bias* diagnostics. *HPS* was omitted from this repo as its implementation is trivial.
 
 **Paper:** [Reliable Evaluation Protocol for Low-Precision Retrieval](https://arxiv.org/abs/2508.03306) (ACL 2026)
 
