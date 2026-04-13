@@ -1,4 +1,4 @@
-# Tie-aware Retrieval Metric (TRM)
+# Tie-aware Retrieval Metrics (TRMs)
 
 A lightweight Python library for **reliable evaluation of retrieval systems** in the presence of tied relevance scores.
 
