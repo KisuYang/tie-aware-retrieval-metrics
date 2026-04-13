@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tie-aware-retrieval-metrics"
+version = "0.1.0"
+description = "Tie-aware Retrieval Metrics (TRM) for reliable evaluation of retrieval systems under tied relevance scores."
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.9"
+authors = [
+    {name = "Kisu Yang"},
+    {name = "Yoonna Jang"},
+    {name = "Hwanseok Jang"},
+    {name = "Kenneth Choi"},
+    {name = "Isabelle Augenstein"},
+    {name = "Heuiseok Lim"},
+]
+keywords = [
+    "retrieval",
+    "evaluation",
+    "information-retrieval",
+    "tie-breaking",
+    "low-precision",
+    "ndcg",
+    "mrr",
+    "map",
+    "recall",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+[project.urls]
+Homepage = "https://github.com/KisuYang/tie-aware-retrieval-metrics"
+Repository = "https://github.com/KisuYang/tie-aware-retrieval-metrics"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[tool.setuptools.packages.find]
+include = ["trm*"]
