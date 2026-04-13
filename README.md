@@ -1,12 +1,10 @@
-# Tie-aware Retrieval Metrics (TRM)
+# Tie-aware Retrieval Metric (TRM)
 
 A lightweight Python library for **reliable evaluation of retrieval systems** in the presence of tied relevance scores.
 
-When retrieval models operate in low numerical precision (e.g., BF16, FP16), many candidate documents receive identical scores, creating *spurious ties*. Conventional tie-oblivious evaluation arbitrarily breaks these ties, leading to unstable and potentially misleading metric values. **TRM** resolves this by computing **expected metric values** over all possible orderings of tied candidates, along with score **range** and **bias** diagnostics.
+When retrieval models operate in low numerical precision (e.g., BF16, FP16), many candidate documents receive identical scores, creating *spurious ties*. Conventional tie-oblivious evaluation arbitrarily breaks these ties, leading to unstable and potentially misleading metric values. **TRM** resolves this by computing **expected score** over all possible orderings of tied candidates, along with score **range** and **bias** diagnostics.
 
-> **Reference**
-> Kisu Yang, Yoonna Jang, Hwanseok Jang, Kenneth Choi, Isabelle Augenstein, Heuiseok Lim.
-> *Reliable Evaluation Protocol for Low-Precision Retrieval.* **ACL 2026**.
+**Paper:** [Reliable Evaluation Protocol for Low-Precision Retrieval](https://arxiv.org/abs/2508.03306) (ACL 2026)
 
 ## Installation
 
@@ -28,19 +26,15 @@ pip install -e .
 import trm
 
 # Per-query relevance scores and labels
-scores = [
-    [0.99, 0.97, 0.97, 0.97, 0.95],  # query 1: three docs share score 0.97
-]
-is_relevant = [
-    [False, True, False, True, False],  # query 1: docs 1, 3 are relevant
-]
+scores = [[0.99, 0.97, 0.97, 0.97, 0.95]]  # query 1: three docs share score 0.97
+
+is_relevant = [[False, True, False, True, False]]  # query 1: docs 1, 3 are relevant
 
 result = trm.evaluate(
     scores=scores,
     is_relevant=is_relevant,
     metrics=["ndcg", "mrr", "recall"],
-    k_list=[3, 5],
-)
+    k_list=[3, 5])
 
 # Macro-averaged results
 for metric in ["ndcg", "mrr", "recall"]:
@@ -108,13 +102,13 @@ Build tie groups from raw scores and relevance labels.
 
 | Metric       | Key           | Paper Reference |
 |-------------|---------------|-----------------|
-| nDCG@k      | `"ndcg"`      | Eq. 14-16       |
-| MRR@k       | `"mrr"`       | Eq. 17-21       |
-| MAP@k       | `"map"`       | Eq. 22-24       |
+| Hits@k      | `"hits"`      | Eq. 9           |
 | Recall@k    | `"recall"`    | Eq. 10          |
 | Precision@k | `"precision"` | Eq. 11          |
 | F1@k        | `"f1"`        | Eq. 12          |
-| Hits@k      | `"hits"`      | Eq. 9           |
+| nDCG@k      | `"ndcg"`      | Eq. 14-16       |
+| MRR@k       | `"mrr"`       | Eq. 17-21       |
+| MAP@k       | `"map"`       | Eq. 22-24       |
 
 ## Citation
 
