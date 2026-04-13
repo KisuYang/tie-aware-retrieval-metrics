@@ -58,6 +58,18 @@ recall@3: E[M]=0.6667  M_obl=0.5000  M_max=1.0000  M_min=0.5000  range=0.5000  b
 recall@5: E[M]=1.0000  M_obl=1.0000  M_max=1.0000  M_min=1.0000  range=0.0000  bias=0.0000
 ```
 
+## Supported Metrics
+
+| Metric       | Key           | Paper Reference |
+|-------------|---------------|-----------------|
+| Hits@k      | `"hits"`      | Eq. 9           |
+| Recall@k    | `"recall"`    | Eq. 10          |
+| Precision@k | `"precision"` | Eq. 11          |
+| F1@k        | `"f1"`        | Eq. 12          |
+| nDCG@k      | `"ndcg"`      | Eq. 14-16       |
+| MRR@k       | `"mrr"`       | Eq. 17-21       |
+| MAP@k       | `"map"`       | Eq. 22-24       |
+
 ## API Reference
 
 You can also selectively import:
@@ -66,7 +78,7 @@ You can also selectively import:
 from trm import evaluate, build_tie_groups
 ```
 
-### `trm.evaluate(scores, is_relevant, metrics=None, k_list=None)`
+#### `trm.evaluate(scores, is_relevant, metrics=None, k_list=None)`
 
 Compute tie-aware retrieval metrics over a set of queries.
 
@@ -81,7 +93,7 @@ Compute tie-aware retrieval metrics over a set of queries.
 - `.per_query[metric_name][k]` &rarr; list of per-query `TieAwareResult`
 - `.to_dict()` &rarr; flat dictionary for logging
 
-### `TieAwareResult`
+#### `TieAwareResult`
 
 | Attribute    | Description                              |
 |-------------|------------------------------------------|
@@ -92,23 +104,11 @@ Compute tie-aware retrieval metrics over a set of queries.
 | `.range`     | M_max - M_min (Eq. 4)                   |
 | `.bias`      | M_obl - E[M] (Eq. 5)                    |
 
-### `trm.build_tie_groups(scores, is_relevant)`
+#### `trm.build_tie_groups(scores, is_relevant)`
 
 Build tie groups from raw scores and relevance labels.
 
 **Returns:** list of `(group_size, num_relevant)` tuples sorted by descending score.
-
-## Supported Metrics
-
-| Metric       | Key           | Paper Reference |
-|-------------|---------------|-----------------|
-| Hits@k      | `"hits"`      | Eq. 9           |
-| Recall@k    | `"recall"`    | Eq. 10          |
-| Precision@k | `"precision"` | Eq. 11          |
-| F1@k        | `"f1"`        | Eq. 12          |
-| nDCG@k      | `"ndcg"`      | Eq. 14-16       |
-| MRR@k       | `"mrr"`       | Eq. 17-21       |
-| MAP@k       | `"map"`       | Eq. 22-24       |
 
 ## Citation
 
