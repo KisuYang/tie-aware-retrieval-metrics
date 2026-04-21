@@ -9,7 +9,7 @@ When retrieval models operate in low numerical precision (e.g., BF16, FP16), man
 ## Installation
 
 ```bash
-pip install tie-aware-retrieval-metrics  # being restored; install from source for now
+pip install tie-aware-retrieval-metrics
 ```
 
 Or install from source:
